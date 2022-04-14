@@ -15,8 +15,8 @@ class PublicAPIListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = .systemYellow //UIColor(red: 96/255, green: 124/255, blue: 60/255, alpha: 1)
+        presentor?.fetchAllEntries()
         
     }
 }

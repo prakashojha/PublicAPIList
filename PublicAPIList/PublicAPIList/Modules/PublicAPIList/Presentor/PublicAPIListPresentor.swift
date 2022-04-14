@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PublistAPIListPresentor: PresentorProtocol{
+class PublicAPIListPresentor: PresentorProtocol{
     
     var interactor: InteractorProtocol?
     var router: RouterProtocol?

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PublicListAPIInteractor: InteractorProtocol{
+class PublicAPIListInteractor: InteractorProtocol{
     
     weak var presentor: PresentorProtocol?
     
