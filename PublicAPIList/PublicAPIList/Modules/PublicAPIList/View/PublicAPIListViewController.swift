@@ -9,6 +9,7 @@ import UIKit
 
 class PublicAPIListViewController: UIViewController {
     
+    var isPaginating = false
     var presentor: PresentorProtocol?
     var apiList: [APIDetail] = []
     var searchApiList: [APIDetail] = []
@@ -22,6 +23,7 @@ class PublicAPIListViewController: UIViewController {
         tableView.register(PublicAPIListCellView.self, forCellReuseIdentifier: "cell")
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.prefetchDataSource = self
         tableView.showsVerticalScrollIndicator = false
         return tableView
         
@@ -31,7 +33,7 @@ class PublicAPIListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemYellow //UIColor(red: 96/255, green: 124/255, blue: 60/255, alpha: 1)
-        presentor?.fetchAllEntries()
+        presentor?.loadTableEntries()
         self.view.addSubview(tableView)
         setupConstraints()
         setupNavigationAndBarButton()
@@ -93,6 +95,18 @@ class PublicAPIListViewController: UIViewController {
         ])
     }
     
+    func CreateLoadingFooter()->UIView{
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
+        
+        let spinner = UIActivityIndicatorView()
+        spinner.style = .large
+        spinner.center = footerView.center
+        
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        return footerView
+    }
+    
 }
 
 
@@ -107,13 +121,20 @@ extension PublicAPIListViewController: ViewProtocol{
         self.searchApiList = self.apiList
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.isPaginating = false
+            self.tableView.tableFooterView = nil
         }
     }
     
 }
 
 
-extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegate{
+
+extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching{
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+       ///Do Nothing
+    }
+    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         1
@@ -155,6 +176,22 @@ extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegat
         let movedObject = self.apiList[sourceIndexPath.row]
         apiList.remove(at: sourceIndexPath.row)
         apiList.insert(movedObject, at: destinationIndexPath.row)
+    }
+    
+    
+    ///Pagination Fetch result in advance and add to the list
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == tableView{
+            if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height){
+                if !self.isPaginating {
+                    self.isPaginating = true
+                    self.tableView.tableFooterView = CreateLoadingFooter()
+                    presentor?.loadTableEntries()
+                    
+                }
+            }
+            
+        }
     }
     
 }

@@ -23,13 +23,13 @@ protocol PresentorProtocol: AnyObject{
     var router: RouterProtocol? {get set}
     
     ///Call From View To Presenter
-    func fetchAllEntries()
+    
     func loadTableEntries()
     func loadDetailPage(withUrl: String)
     
     ///Callbacks rom Interpretor to Presenter f
     func didLoadTableEntries(apiData: [APIDetail])
-    func didFetchAllEntries(status: Bool)
+    
     
 }
 
@@ -38,7 +38,6 @@ protocol PresentorProtocol: AnyObject{
 protocol InteractorProtocol: AnyObject{
     var presentor: PresentorProtocol? {get set}
     //Call made by Presentor
-    func fetchAllEntries()
     func loadTableEntries()
     
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 struct Constant{
-    static let allAPICategoriesURL = "https://api.publicapis.org/entries"
+    static let randomAPILink = "https://api.publicapis.org/random"
 }

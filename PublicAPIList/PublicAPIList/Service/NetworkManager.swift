@@ -28,7 +28,7 @@ class NetworkManager: APIServiceProtocol{
     
     
     func requestData(fromURL: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        guard let url = URL(string: fromURL) else {
+        guard let url = createURLRequest(fromURLString: fromURL) else {
             print("url not found, url", fromURL)
             completion(.failure(NetworkError.URLNotFormed))
             return

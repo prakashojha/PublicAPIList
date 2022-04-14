@@ -20,37 +20,34 @@ class PublicAPIListInteractor: InteractorProtocol{
     }
     
     
-    ///Fetch all the entries from API
+    ///Fetch 10 random API
     func loadTableEntries(){
-        var tableEntries: [APIDetail] = []
-        for _ in 0...15{
-            if let element = self.categories.randomElement(){
-                tableEntries.append(element)
-            }
-            
-        }
-        self.presentor?.didLoadTableEntries(apiData: tableEntries)
-    }
-
-
-    func fetchAllEntries(){
-        apiService.requestData(fromURL: Constant.allAPICategoriesURL) { result in
-            switch(result){
-            case .success(let data):
-                if let allAPIDetail = try? JSONDecoder().decode(APIDetailList.self, from: data){
-                    self.categories.append(contentsOf: allAPIDetail.entries)
-                    self.presentor?.didFetchAllEntries(status: true)
-                }
-                else{
-                    self.presentor?.didFetchAllEntries(status: false)
-                    
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-                self.presentor?.didFetchAllEntries(status: false)
-            }
-            
-        }
+        let dispatchQueue = DispatchQueue.global(qos: .userInitiated)
+        let dispatchGroup = DispatchGroup()
+        let dispatchSemaphore = DispatchSemaphore(value: 10)
         
+        dispatchQueue.async(group: dispatchGroup) { [weak self] in
+            guard let self = self else { return }
+            for _ in 0...10 {
+                dispatchGroup.enter()
+                dispatchSemaphore.wait()
+                
+                self.apiService.requestData(fromURL: Constant.randomAPILink) { result in
+                    switch(result){
+                    case .success(let data):
+                        if let allAPIDetail = try? JSONDecoder().decode(APIDetailList.self, from: data){
+                            self.categories.append(contentsOf: allAPIDetail.entries)
+                        }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                    dispatchGroup.leave()
+                    dispatchSemaphore.signal()
+                }
+            }
+        }
+        dispatchGroup.notify(queue: .main) { [self] in
+            self.presentor?.didLoadTableEntries(apiData: categories)
+        }
     }
 }

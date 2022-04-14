@@ -23,10 +23,6 @@ class PublicAPIListPresentor: PresentorProtocol{
         interactor?.loadTableEntries()
     }
     
-    func fetchAllEntries(){
-        interactor?.fetchAllEntries()
-    }
-    
     func loadDetailPage(withUrl: String){
         print("calling router")
         router?.loadDetailPage(withUrl: withUrl)
@@ -41,14 +37,4 @@ class PublicAPIListPresentor: PresentorProtocol{
         
     }
     
-    func didFetchAllEntries(status: Bool) {
-        if status {
-            print("didFetchAllEntries")
-            (view as! PublicAPIListViewController).onFinishFetchAllEntries()
-        }
-        else{
-            print("Unable to fetch entries")
-        }
-        
-    }
 }
