@@ -11,7 +11,10 @@ class PublicAPIListViewController: UIViewController {
     
     var presentor: PresentorProtocol?
     var apiList: [APIDetail] = []
+    var searchApiList: [APIDetail] = []
     var sortAscending: Bool = true
+    let searchController = UISearchController(searchResultsController: nil)
+    
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -24,6 +27,7 @@ class PublicAPIListViewController: UIViewController {
         
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemYellow //UIColor(red: 96/255, green: 124/255, blue: 60/255, alpha: 1)
@@ -31,13 +35,13 @@ class PublicAPIListViewController: UIViewController {
         self.view.addSubview(tableView)
         setupConstraints()
         setupNavigationAndBarButton()
-        
     }
     
     
     func setupNavigationAndBarButton(){
         setUpNavigation()
         setUpEditAndSortBarButtons()
+        setUpSearchBar()
     }
     
     
@@ -49,9 +53,7 @@ class PublicAPIListViewController: UIViewController {
     
     func setUpEditAndSortBarButtons(){
         self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName :"arrow.up.arrow.down"),
-                            style: .done,
-                            target: self,
+            UIBarButtonItem(image: UIImage(systemName :"arrow.up.arrow.down"), style: .done, target: self,
                             action: #selector(onSortTApped)),
             editButtonItem
         ]
@@ -69,6 +71,15 @@ class PublicAPIListViewController: UIViewController {
         super.setEditing(editing, animated: animated)
         self.tableView.isEditing = editing
         
+    }
+    
+    
+    func setUpSearchBar(){
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.searchBar.placeholder = "Search With Categories"
+        self.tableView.tableHeaderView = searchController.searchBar
     }
     
     
@@ -93,6 +104,7 @@ extension PublicAPIListViewController: ViewProtocol{
     
     func onFinishLoadTableEntries(with apiList: [APIDetail]) {
         self.apiList = apiList
+        self.searchApiList = self.apiList
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -145,6 +157,14 @@ extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegat
         apiList.insert(movedObject, at: destinationIndexPath.row)
     }
     
+}
+
+
+extension PublicAPIListViewController : UISearchResultsUpdating{
     
-    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        apiList = searchApiList.filter { $0.category.hasPrefix(searchText) }
+        tableView.reloadData()
+    }
 }
