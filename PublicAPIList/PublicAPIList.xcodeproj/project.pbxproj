@@ -23,6 +23,7 @@
 		B6F688BD2807AD5500A81E92 /* PublicAPIListPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688BC2807AD5500A81E92 /* PublicAPIListPresentor.swift */; };
 		B6F688BF2807ADB900A81E92 /* PublicAPIListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688BE2807ADB900A81E92 /* PublicAPIListInteractor.swift */; };
 		B6F688C12807B80000A81E92 /* PublicAPIListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688C02807B80000A81E92 /* PublicAPIListRouter.swift */; };
+		B6F688C32807BB8500A81E92 /* PublicAPIListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688C22807BB8500A81E92 /* PublicAPIListCellView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		B6F688BC2807AD5500A81E92 /* PublicAPIListPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListPresentor.swift; sourceTree = "<group>"; };
 		B6F688BE2807ADB900A81E92 /* PublicAPIListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListInteractor.swift; sourceTree = "<group>"; };
 		B6F688C02807B80000A81E92 /* PublicAPIListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListRouter.swift; sourceTree = "<group>"; };
+		B6F688C22807BB8500A81E92 /* PublicAPIListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListCellView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				B6F6887B280784F700A81E92 /* PublicAPIListViewController.swift */,
+				B6F688C22807BB8500A81E92 /* PublicAPIListCellView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			files = (
 				B6F688C12807B80000A81E92 /* PublicAPIListRouter.swift in Sources */,
 				B6F688AC2807A8A500A81E92 /* APIDetailList.swift in Sources */,
+				B6F688C32807BB8500A81E92 /* PublicAPIListCellView.swift in Sources */,
 				B6F6887C280784F700A81E92 /* PublicAPIListViewController.swift in Sources */,
 				B6F68878280784F700A81E92 /* AppDelegate.swift in Sources */,
 				B6F688B42807AA0500A81E92 /* NetworkManager.swift in Sources */,
