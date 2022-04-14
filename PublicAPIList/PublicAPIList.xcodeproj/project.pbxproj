@@ -19,6 +19,9 @@
 		B6F688AF2807A99900A81E92 /* APIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688AE2807A99900A81E92 /* APIServiceProtocol.swift */; };
 		B6F688B22807A9DF00A81E92 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688B12807A9DF00A81E92 /* Constant.swift */; };
 		B6F688B42807AA0500A81E92 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688B32807AA0500A81E92 /* NetworkManager.swift */; };
+		B6F688B72807AC4700A81E92 /* PublicAPIListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688B62807AC4700A81E92 /* PublicAPIListProtocol.swift */; };
+		B6F688BD2807AD5500A81E92 /* PublistAPIListPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688BC2807AD5500A81E92 /* PublistAPIListPresentor.swift */; };
+		B6F688BF2807ADB900A81E92 /* PublicListAPIInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688BE2807ADB900A81E92 /* PublicListAPIInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		B6F688AE2807A99900A81E92 /* APIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceProtocol.swift; sourceTree = "<group>"; };
 		B6F688B12807A9DF00A81E92 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		B6F688B32807AA0500A81E92 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		B6F688B62807AC4700A81E92 /* PublicAPIListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListProtocol.swift; sourceTree = "<group>"; };
+		B6F688BC2807AD5500A81E92 /* PublistAPIListPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublistAPIListPresentor.swift; sourceTree = "<group>"; };
+		B6F688BE2807ADB900A81E92 /* PublicListAPIInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicListAPIInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,13 +111,10 @@
 		B6F68876280784F700A81E92 /* PublicAPIList */ = {
 			isa = PBXGroup;
 			children = (
+				B6F688B52807ABF600A81E92 /* Common */,
 				B6F688B02807A9D000A81E92 /* Constant */,
 				B6F688AD2807A97500A81E92 /* Service */,
 				B6F688A72807A81200A81E92 /* Modules */,
-				B6F68877280784F700A81E92 /* AppDelegate.swift */,
-				B6F68879280784F700A81E92 /* SceneDelegate.swift */,
-				B6F68880280784F900A81E92 /* Assets.xcassets */,
-				B6F68882280784F900A81E92 /* LaunchScreen.storyboard */,
 				B6F68885280784F900A81E92 /* Info.plist */,
 			);
 			path = PublicAPIList;
@@ -145,8 +148,12 @@
 		B6F688A82807A81F00A81E92 /* PublicAPIList */ = {
 			isa = PBXGroup;
 			children = (
-				B6F688AA2807A87C00A81E92 /* Entity */,
 				B6F688A92807A83200A81E92 /* View */,
+				B6F688BB2807AD2C00A81E92 /* Router */,
+				B6F688BA2807AD2000A81E92 /* Interactor */,
+				B6F688B92807AD1300A81E92 /* Presentor */,
+				B6F688B82807AD0700A81E92 /* Protocol */,
+				B6F688AA2807A87C00A81E92 /* Entity */,
 			);
 			path = PublicAPIList;
 			sourceTree = "<group>";
@@ -182,6 +189,48 @@
 				B6F688B12807A9DF00A81E92 /* Constant.swift */,
 			);
 			path = Constant;
+			sourceTree = "<group>";
+		};
+		B6F688B52807ABF600A81E92 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B6F68882280784F900A81E92 /* LaunchScreen.storyboard */,
+				B6F68880280784F900A81E92 /* Assets.xcassets */,
+				B6F68879280784F700A81E92 /* SceneDelegate.swift */,
+				B6F68877280784F700A81E92 /* AppDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B6F688B82807AD0700A81E92 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B6F688B62807AC4700A81E92 /* PublicAPIListProtocol.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B6F688B92807AD1300A81E92 /* Presentor */ = {
+			isa = PBXGroup;
+			children = (
+				B6F688BC2807AD5500A81E92 /* PublistAPIListPresentor.swift */,
+			);
+			path = Presentor;
+			sourceTree = "<group>";
+		};
+		B6F688BA2807AD2000A81E92 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				B6F688BE2807ADB900A81E92 /* PublicListAPIInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		B6F688BB2807AD2C00A81E92 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,7 +368,10 @@
 				B6F68878280784F700A81E92 /* AppDelegate.swift in Sources */,
 				B6F688B42807AA0500A81E92 /* NetworkManager.swift in Sources */,
 				B6F688AF2807A99900A81E92 /* APIServiceProtocol.swift in Sources */,
+				B6F688BD2807AD5500A81E92 /* PublistAPIListPresentor.swift in Sources */,
+				B6F688B72807AC4700A81E92 /* PublicAPIListProtocol.swift in Sources */,
 				B6F6887A280784F700A81E92 /* SceneDelegate.swift in Sources */,
+				B6F688BF2807ADB900A81E92 /* PublicListAPIInteractor.swift in Sources */,
 				B6F688B22807A9DF00A81E92 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
