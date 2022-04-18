@@ -12,7 +12,7 @@ class MockNetworkManager: APIServiceProtocol{
     
     func requestData(fromURL: String, completion: @escaping (Result<Data, Error>) -> Void) {
         
-        if let url = Bundle.main.url(forResource: "MockData", withExtension: "json") {
+        if let url = Bundle.main.url(forResource: fromURL, withExtension: "json") {
             
             let data = try? Data(contentsOf: url)
             if let apiData = data{

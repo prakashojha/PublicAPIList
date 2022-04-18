@@ -24,8 +24,6 @@ class PublicAPIListInteractor: InteractorProtocol{
     func loadTableEntries(){
         let dispatchQueue = DispatchQueue.global(qos: .userInitiated)
         let dispatchGroup = DispatchGroup()
-        
-        
         dispatchQueue.async(group: dispatchGroup) { [weak self] in
             guard let self = self else { return }
             for _ in 0...9 {

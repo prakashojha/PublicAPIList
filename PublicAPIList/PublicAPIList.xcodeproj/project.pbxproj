@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B62E8329280A54EB002F1A5D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = B62E8328280A54EB002F1A5D /* MockData.json */; };
-		B62E832B280A5D1A002F1A5D /* DeleteLater.json in Resources */ = {isa = PBXBuildFile; fileRef = B62E832A280A5D1A002F1A5D /* DeleteLater.json */; };
 		B62E832C280A5E6C002F1A5D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = B62E8328280A54EB002F1A5D /* MockData.json */; };
 		B6A152E5280D7AF10045F83F /* PublicListAPIModuleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A152E4280D7AF10045F83F /* PublicListAPIModuleGenerator.swift */; };
 		B6F2598628091579000C10E2 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F2598528091579000C10E2 /* MockNetworkManager.swift */; };
@@ -52,7 +51,6 @@
 
 /* Begin PBXFileReference section */
 		B62E8328280A54EB002F1A5D /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
-		B62E832A280A5D1A002F1A5D /* DeleteLater.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DeleteLater.json; sourceTree = "<group>"; };
 		B6A152E4280D7AF10045F83F /* PublicListAPIModuleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicListAPIModuleGenerator.swift; sourceTree = "<group>"; };
 		B6F2598528091579000C10E2 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		B6F2598D28093DCE000C10E2 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
@@ -118,7 +116,6 @@
 			children = (
 				B6F2598528091579000C10E2 /* MockNetworkManager.swift */,
 				B62E8328280A54EB002F1A5D /* MockData.json */,
-				B62E832A280A5D1A002F1A5D /* DeleteLater.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -389,7 +386,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B62E8329280A54EB002F1A5D /* MockData.json in Resources */,
-				B62E832B280A5D1A002F1A5D /* DeleteLater.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
