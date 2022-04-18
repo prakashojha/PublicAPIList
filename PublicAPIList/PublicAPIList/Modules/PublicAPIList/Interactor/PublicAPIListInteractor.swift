@@ -45,8 +45,8 @@ class PublicAPIListInteractor: InteractorProtocol{
             }
         }
         
-        dispatchGroup.notify(queue: .main) { [self] in
-            self.presentor?.didLoadTableEntries(data: apiDetails)
+        dispatchGroup.notify(queue: .main) {
+            self.presentor?.didLoadTableEntries(data: self.apiDetails)
             
         }
     }

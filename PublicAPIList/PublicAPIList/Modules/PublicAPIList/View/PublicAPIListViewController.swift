@@ -182,6 +182,9 @@ extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegat
         return cell ?? UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(presentor?.heightForRow ?? 0)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return CGFloat(presentor?.heightForRow ?? 0)
