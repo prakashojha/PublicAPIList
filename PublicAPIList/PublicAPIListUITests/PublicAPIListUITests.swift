@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import PublicAPIList
 
 class PublicAPIListUITests: XCTestCase {
 
@@ -38,4 +39,6 @@ class PublicAPIListUITests: XCTestCase {
             }
         }
     }
+    
+    
 }

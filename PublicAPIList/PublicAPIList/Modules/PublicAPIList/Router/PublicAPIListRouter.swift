@@ -7,37 +7,34 @@
 
 import Foundation
 import UIKit
+import SafariServices
 
 class PublicAPIListRouter: RouterProtocol{
+   
     
     private let navigationComtroller: UINavigationController
-    var view : PublicAPIListViewController!
-    var interactor: InteractorProtocol?
-    var presentor: PresentorProtocol?
-    var router: RouterProtocol?
     
     
     init(navigationController: UINavigationController){
         self.navigationComtroller = navigationController
     }
     
-    func createModeul() -> UIViewController{
-        view = PublicAPIListViewController()
-        interactor = PublicAPIListInteractor(apiService: NetworkManager())
-        presentor = PublicAPIListPresentor(interactor: interactor!)
-        router = PublicAPIListRouter(navigationController: navigationComtroller)
-        
-        view.presentor = presentor
-        view.presentor?.view = view
-        view.presentor?.router = router
-        view.presentor?.interactor = interactor
-        view.presentor?.interactor?.presentor = presentor
-        
-        return view
+   
+    func showLoadErrorAlert(withError: String){
+        let alert = UIAlertController(title: "Load Error", message: withError, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil ))
+        navigationComtroller.present(alert, animated: true, completion: nil)
     }
     
+    
     func loadDetailPage(withUrl: String){
-        
+        guard let url = URL(string: withUrl) else { return }
+        let config = SFSafariViewController.Configuration()
+        let safariViewControler = SFSafariViewController(url: url, configuration: config)
+        safariViewControler.modalPresentationStyle = .fullScreen
+        navigationComtroller.present(safariViewControler, animated: true, completion: nil)
     }
+    
+    
     
 }

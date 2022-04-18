@@ -67,7 +67,6 @@ final class PublicAPIListCellView: UITableViewCell{
         view.addSubview(categortLabel)
         view.addSubview(apiLabel)
         view.backgroundColor = UIColor(red: 8/255, green: 164/255, blue: 167/255, alpha: 1)
-       // view.layer.cornerRadius = 8
         
         categortLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -114,7 +113,6 @@ final class PublicAPIListCellView: UITableViewCell{
         view.addSubview(linkLabel)
         linkLabel.textColor = .blue
         view.backgroundColor = UIColor(red: 8/255, green: 164/255, blue: 167/255, alpha: 1) //.lightGray
-       // view.layer.cornerRadius = 8
         
         linkLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -130,8 +128,7 @@ final class PublicAPIListCellView: UITableViewCell{
     
     private lazy var parentView: UIView = {
         let view = UIView(frame: self.frame)
-        view.backgroundColor = .darkGray //UIColor(red: 196/255, green: 235/255, blue: 241/155, alpha: 1)
-        //view.layer.cornerRadius = 8
+        view.backgroundColor = .darkGray
         
         view.addSubview(topView)
         view.addSubview(descriptionView)
@@ -158,11 +155,8 @@ final class PublicAPIListCellView: UITableViewCell{
             descriptionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 2),
             descriptionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -2),
             descriptionView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 0),
-            //descriptionView.heightAnchor.constraint(equalToConstant: 50),
             descriptionView.bottomAnchor.constraint(greaterThanOrEqualTo: linkView.topAnchor, constant: 0)
         ])
-        
-        
         
         return view
     }()
@@ -187,10 +181,9 @@ final class PublicAPIListCellView: UITableViewCell{
     
     func setUpViews(){
         contentView.addSubview(parentView)
-        //contentView.backgroundColor = .cyan //UIColor(red: 96/255, green: 124/255, blue: 60/255, alpha: 1)
-        //contentView.layer.cornerRadius = 8
         
     }
+    
     
     func setUpConstraints(){
         parentViewConstraint()
@@ -198,14 +191,13 @@ final class PublicAPIListCellView: UITableViewCell{
     
     
     func parentViewConstraint(){
-        
         parentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             parentView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 4),
             parentView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -4),
             parentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
             parentView.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -2)
-            //parentView.heightAnchor.constraint(equalToConstant: 150)
+
         ])
     }
 }

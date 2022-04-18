@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-///These protocols are implemented by View
+///implemented by View
 protocol ViewProtocol: AnyObject{
-    
-    func onFinishLoadTableEntries(with List: [APIDetail])
-    func onFinishFetchAllEntries()
+    var presentor: (PresentorProtocol & TableViewModelProtocol)? {get set}
+    func onFinishLoadTableEntries()
+    func onDataLoadError()
     
 }
 
@@ -23,12 +23,11 @@ protocol PresentorProtocol: AnyObject{
     var router: RouterProtocol? {get set}
     
     ///Call From View To Presenter
-    
     func loadTableEntries()
     func loadDetailPage(withUrl: String)
     
-    ///Callbacks rom Interpretor to Presenter f
-    func didLoadTableEntries(apiData: [APIDetail])
+    ///Callbacks from Interpretor to Presenter f
+    func didLoadTableEntries<T>(data: [T])
     
     
 }
@@ -37,13 +36,15 @@ protocol PresentorProtocol: AnyObject{
 ///Impleneted by Interactor
 protocol InteractorProtocol: AnyObject{
     var presentor: PresentorProtocol? {get set}
-    //Call made by Presentor
+    ///Call from Presentor to Interactor
     func loadTableEntries()
     
 }
 
-///Impleneted by router
+///Impleneted by Router
 protocol RouterProtocol: AnyObject{
-    func createModeul()->UIViewController
     func loadDetailPage(withUrl: String)
+    
+    ///Call from Presentor to Router
+    func showLoadErrorAlert(withError: String)
 }

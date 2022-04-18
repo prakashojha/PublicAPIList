@@ -21,13 +21,13 @@ struct APIDetailList: Decodable{
 
 ///Single API Detail
 struct APIDetail: Decodable{
-    let api: String
-    let description: String
-    let auth: String
-    let https: Bool
-    let cors: String
-    let link: String
-    let category: String
+    let api: String?
+    let description: String?
+    let auth: String?
+    let https: Bool?
+    let cors: String?
+    let link: String?
+    let category: String?
     
     enum CodingKeys: String, CodingKey{
         case api = "API"

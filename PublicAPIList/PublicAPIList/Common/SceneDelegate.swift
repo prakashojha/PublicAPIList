@@ -11,7 +11,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var navigationController: UINavigationController!
-    var startRouter: PublicAPIListRouter!
+    var moduleGenerator: PublicListAPIModuleGenerator!
+
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -21,10 +22,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navigationController = UINavigationController()
         self.navigationController = navigationController
-        let startRouter = PublicAPIListRouter(navigationController: navigationController)
-        self.startRouter = startRouter
-        let viewController = startRouter.createModeul()
         
+        let publicListAPIModuleGenerator = PublicListAPIModuleGenerator(navigationController: navigationController)
+        self.moduleGenerator = publicListAPIModuleGenerator
+        
+        let viewController = moduleGenerator.generateModules()
         navigationController.setViewControllers([viewController], animated: false)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

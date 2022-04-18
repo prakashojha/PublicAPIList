@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B62E8329280A54EB002F1A5D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = B62E8328280A54EB002F1A5D /* MockData.json */; };
+		B62E832B280A5D1A002F1A5D /* DeleteLater.json in Resources */ = {isa = PBXBuildFile; fileRef = B62E832A280A5D1A002F1A5D /* DeleteLater.json */; };
+		B62E832C280A5E6C002F1A5D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = B62E8328280A54EB002F1A5D /* MockData.json */; };
+		B6A152E5280D7AF10045F83F /* PublicListAPIModuleGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6A152E4280D7AF10045F83F /* PublicListAPIModuleGenerator.swift */; };
+		B6F2598628091579000C10E2 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F2598528091579000C10E2 /* MockNetworkManager.swift */; };
+		B6F2598E28093DCE000C10E2 /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F2598D28093DCE000C10E2 /* NetworkManagerTest.swift */; };
 		B6F68878280784F700A81E92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F68877280784F700A81E92 /* AppDelegate.swift */; };
 		B6F6887A280784F700A81E92 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F68879280784F700A81E92 /* SceneDelegate.swift */; };
 		B6F6887C280784F700A81E92 /* PublicAPIListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F6887B280784F700A81E92 /* PublicAPIListViewController.swift */; };
@@ -14,7 +20,6 @@
 		B6F68884280784F900A81E92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6F68882280784F900A81E92 /* LaunchScreen.storyboard */; };
 		B6F6888F280784F900A81E92 /* PublicAPIListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F6888E280784F900A81E92 /* PublicAPIListTests.swift */; };
 		B6F68899280784FA00A81E92 /* PublicAPIListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F68898280784FA00A81E92 /* PublicAPIListUITests.swift */; };
-		B6F6889B280784FA00A81E92 /* PublicAPIListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F6889A280784FA00A81E92 /* PublicAPIListUITestsLaunchTests.swift */; };
 		B6F688AC2807A8A500A81E92 /* APIDetailList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688AB2807A8A500A81E92 /* APIDetailList.swift */; };
 		B6F688AF2807A99900A81E92 /* APIServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688AE2807A99900A81E92 /* APIServiceProtocol.swift */; };
 		B6F688B22807A9DF00A81E92 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688B12807A9DF00A81E92 /* Constant.swift */; };
@@ -24,6 +29,8 @@
 		B6F688BF2807ADB900A81E92 /* PublicAPIListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688BE2807ADB900A81E92 /* PublicAPIListInteractor.swift */; };
 		B6F688C12807B80000A81E92 /* PublicAPIListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688C02807B80000A81E92 /* PublicAPIListRouter.swift */; };
 		B6F688C32807BB8500A81E92 /* PublicAPIListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688C22807BB8500A81E92 /* PublicAPIListCellView.swift */; };
+		B6F688C52807EB0D00A81E92 /* PublicAPIListPresentorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688C42807EB0D00A81E92 /* PublicAPIListPresentorTests.swift */; };
+		B6F688C728083C3300A81E92 /* TableViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F688C628083C3300A81E92 /* TableViewModelProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B62E8328280A54EB002F1A5D /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; };
+		B62E832A280A5D1A002F1A5D /* DeleteLater.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DeleteLater.json; sourceTree = "<group>"; };
+		B6A152E4280D7AF10045F83F /* PublicListAPIModuleGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicListAPIModuleGenerator.swift; sourceTree = "<group>"; };
+		B6F2598528091579000C10E2 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
+		B6F2598D28093DCE000C10E2 /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
 		B6F68874280784F700A81E92 /* PublicAPIList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PublicAPIList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F68877280784F700A81E92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6F68879280784F700A81E92 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +67,6 @@
 		B6F6888E280784F900A81E92 /* PublicAPIListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListTests.swift; sourceTree = "<group>"; };
 		B6F68894280784FA00A81E92 /* PublicAPIListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PublicAPIListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6F68898280784FA00A81E92 /* PublicAPIListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListUITests.swift; sourceTree = "<group>"; };
-		B6F6889A280784FA00A81E92 /* PublicAPIListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B6F688AB2807A8A500A81E92 /* APIDetailList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDetailList.swift; sourceTree = "<group>"; };
 		B6F688AE2807A99900A81E92 /* APIServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceProtocol.swift; sourceTree = "<group>"; };
 		B6F688B12807A9DF00A81E92 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
@@ -65,6 +76,8 @@
 		B6F688BE2807ADB900A81E92 /* PublicAPIListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListInteractor.swift; sourceTree = "<group>"; };
 		B6F688C02807B80000A81E92 /* PublicAPIListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListRouter.swift; sourceTree = "<group>"; };
 		B6F688C22807BB8500A81E92 /* PublicAPIListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListCellView.swift; sourceTree = "<group>"; };
+		B6F688C42807EB0D00A81E92 /* PublicAPIListPresentorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicAPIListPresentorTests.swift; sourceTree = "<group>"; };
+		B6F688C628083C3300A81E92 /* TableViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModelProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +105,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6A152E3280D7ADA0045F83F /* ModuleGenerator */ = {
+			isa = PBXGroup;
+			children = (
+				B6A152E4280D7AF10045F83F /* PublicListAPIModuleGenerator.swift */,
+			);
+			path = ModuleGenerator;
+			sourceTree = "<group>";
+		};
+		B6F259842809155F000C10E2 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				B6F2598528091579000C10E2 /* MockNetworkManager.swift */,
+				B62E8328280A54EB002F1A5D /* MockData.json */,
+				B62E832A280A5D1A002F1A5D /* DeleteLater.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		B6F6886B280784F700A81E92 = {
 			isa = PBXGroup;
 			children = (
@@ -127,7 +158,10 @@
 		B6F6888D280784F900A81E92 /* PublicAPIListTests */ = {
 			isa = PBXGroup;
 			children = (
+				B6F259842809155F000C10E2 /* Mock */,
 				B6F6888E280784F900A81E92 /* PublicAPIListTests.swift */,
+				B6F688C42807EB0D00A81E92 /* PublicAPIListPresentorTests.swift */,
+				B6F2598D28093DCE000C10E2 /* NetworkManagerTest.swift */,
 			);
 			path = PublicAPIListTests;
 			sourceTree = "<group>";
@@ -136,7 +170,6 @@
 			isa = PBXGroup;
 			children = (
 				B6F68898280784FA00A81E92 /* PublicAPIListUITests.swift */,
-				B6F6889A280784FA00A81E92 /* PublicAPIListUITestsLaunchTests.swift */,
 			);
 			path = PublicAPIListUITests;
 			sourceTree = "<group>";
@@ -152,6 +185,7 @@
 		B6F688A82807A81F00A81E92 /* PublicAPIList */ = {
 			isa = PBXGroup;
 			children = (
+				B6A152E3280D7ADA0045F83F /* ModuleGenerator */,
 				B6F688A92807A83200A81E92 /* View */,
 				B6F688BB2807AD2C00A81E92 /* Router */,
 				B6F688BA2807AD2000A81E92 /* Interactor */,
@@ -219,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				B6F688BC2807AD5500A81E92 /* PublicAPIListPresentor.swift */,
+				B6F688C628083C3300A81E92 /* TableViewModelProtocol.swift */,
 			);
 			path = Presentor;
 			sourceTree = "<group>";
@@ -343,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B62E832C280A5E6C002F1A5D /* MockData.json in Resources */,
 				B6F68884280784F900A81E92 /* LaunchScreen.storyboard in Resources */,
 				B6F68881280784F900A81E92 /* Assets.xcassets in Resources */,
 			);
@@ -352,6 +388,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B62E8329280A54EB002F1A5D /* MockData.json in Resources */,
+				B62E832B280A5D1A002F1A5D /* DeleteLater.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,11 +412,13 @@
 				B6F688C32807BB8500A81E92 /* PublicAPIListCellView.swift in Sources */,
 				B6F6887C280784F700A81E92 /* PublicAPIListViewController.swift in Sources */,
 				B6F68878280784F700A81E92 /* AppDelegate.swift in Sources */,
+				B6A152E5280D7AF10045F83F /* PublicListAPIModuleGenerator.swift in Sources */,
 				B6F688B42807AA0500A81E92 /* NetworkManager.swift in Sources */,
 				B6F688AF2807A99900A81E92 /* APIServiceProtocol.swift in Sources */,
 				B6F688BD2807AD5500A81E92 /* PublicAPIListPresentor.swift in Sources */,
 				B6F688B72807AC4700A81E92 /* PublicAPIListProtocol.swift in Sources */,
 				B6F6887A280784F700A81E92 /* SceneDelegate.swift in Sources */,
+				B6F688C728083C3300A81E92 /* TableViewModelProtocol.swift in Sources */,
 				B6F688BF2807ADB900A81E92 /* PublicAPIListInteractor.swift in Sources */,
 				B6F688B22807A9DF00A81E92 /* Constant.swift in Sources */,
 			);
@@ -388,6 +428,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F2598628091579000C10E2 /* MockNetworkManager.swift in Sources */,
+				B6F688C52807EB0D00A81E92 /* PublicAPIListPresentorTests.swift in Sources */,
+				B6F2598E28093DCE000C10E2 /* NetworkManagerTest.swift in Sources */,
 				B6F6888F280784F900A81E92 /* PublicAPIListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,7 +439,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6F6889B280784FA00A81E92 /* PublicAPIListUITestsLaunchTests.swift in Sources */,
 				B6F68899280784FA00A81E92 /* PublicAPIListUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -536,6 +578,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
@@ -611,7 +654,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X5N37JFBKS;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotlight.PublicAPIListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,7 +674,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = X5N37JFBKS;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dotlight.PublicAPIListTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

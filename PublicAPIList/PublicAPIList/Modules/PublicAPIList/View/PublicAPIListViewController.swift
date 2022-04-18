@@ -9,18 +9,15 @@ import UIKit
 
 class PublicAPIListViewController: UIViewController {
     
-    var isPaginating = false
-    var presentor: PresentorProtocol?
-    var apiList: [APIDetail] = []
-    var searchApiList: [APIDetail] = []
-    var sortAscending: Bool = true
+   
+    var presentor: (PresentorProtocol & TableViewModelProtocol)?
     let searchController = UISearchController(searchResultsController: nil)
-    
+    var activityIndicator: UIActivityIndicatorView!
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
-        tableView.register(PublicAPIListCellView.self, forCellReuseIdentifier: "cell")
+        tableView.register(PublicAPIListCellView.self, forCellReuseIdentifier: presentor?.reusableCellIdentifier ?? "Cell")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.prefetchDataSource = self
@@ -30,9 +27,17 @@ class PublicAPIListViewController: UIViewController {
     }()
     
     
+    private  func createActivityIndicatorView()->UIActivityIndicatorView{
+        let avtivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
+        avtivityIndicator.style = .large
+        avtivityIndicator.color = .red
+        return avtivityIndicator
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemYellow //UIColor(red: 96/255, green: 124/255, blue: 60/255, alpha: 1)
+        self.view.backgroundColor = .systemYellow
         presentor?.loadTableEntries()
         self.view.addSubview(tableView)
         setupConstraints()
@@ -40,6 +45,16 @@ class PublicAPIListViewController: UIViewController {
     }
     
     
+    ///Add activity indicator to table view showing load data in progress
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.activityIndicator = createActivityIndicatorView()
+        self.tableView.backgroundView = activityIndicator
+        activityIndicator.startAnimating()
+    }
+    
+    
+    ///Setup navigation bar and features like Edit, Sort , Rearrange and Search
     func setupNavigationAndBarButton(){
         setUpNavigation()
         setUpEditAndSortBarButtons()
@@ -47,12 +62,14 @@ class PublicAPIListViewController: UIViewController {
     }
     
     
+    ///Shows the title of the page
     func setUpNavigation(){
         navigationItem.title = "Public API LIST"
         navigationItem.titleView?.backgroundColor = .cyan
     }
     
     
+    ///Edit and sort button added to the navigation bar
     func setUpEditAndSortBarButtons(){
         self.navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName :"arrow.up.arrow.down"), style: .done, target: self,
@@ -62,20 +79,21 @@ class PublicAPIListViewController: UIViewController {
     }
     
     
+    ///Sort items either in ascending or desceding order when sort item is tapped
     @objc func onSortTApped(){
-        sortAscending == true ? apiList.sort{$0.category < $1.category} : apiList.sort{$0.category > $1.category}
-        sortAscending = !sortAscending
-        tableView.reloadData()
+        presentor?.sort()
     }
     
-    ///Set table for editing
+    
+    ///Toggle table property for editing and non editing.
+    ///Used for deleting or Reordering rows of the table
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         self.tableView.isEditing = editing
         
     }
     
-    
+    ///Sarch controller for searching items within the table using "category" as search criteria
     func setUpSearchBar(){
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
@@ -84,7 +102,8 @@ class PublicAPIListViewController: UIViewController {
         self.tableView.tableHeaderView = searchController.searchBar
     }
     
-    
+    ///Set up table constraints of tableView
+    ///TableView aligns with leading, top, bottom and trailing constraints of the view
     func setupConstraints(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -95,33 +114,46 @@ class PublicAPIListViewController: UIViewController {
         ])
     }
     
+    
+    ///A View with activity indicator used for pagination
+    ///Used to show loading opf new items in progress when user scrolls and reaches at the end of the list
+    ///Added to the footer view
     func CreateLoadingFooter()->UIView{
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
-        
-        let spinner = UIActivityIndicatorView()
-        spinner.style = .large
-        spinner.center = footerView.center
-        
-        footerView.addSubview(spinner)
-        spinner.startAnimating()
+        self.activityIndicator = createActivityIndicatorView()
+        activityIndicator.center = footerView.center
+       
+        footerView.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
         return footerView
     }
     
 }
 
+//MARK:- Extensions Implementations
 
 extension PublicAPIListViewController: ViewProtocol{
-   
-    func onFinishFetchAllEntries() {
-        presentor?.loadTableEntries()
+    
+    ///Housekeeping activity when no data is received from presentor
+    func onDataLoadError() {
+        DispatchQueue.main.async {
+            if self.activityIndicator.isAnimating{
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.removeFromSuperview()
+            }
+        }
     }
     
-    func onFinishLoadTableEntries(with apiList: [APIDetail]) {
-        self.apiList = apiList
-        self.searchApiList = self.apiList
+    ///Once data is received from presentor, stop and remove activity indicator, stop pagination and reload the table
+    func onFinishLoadTableEntries() {
         DispatchQueue.main.async {
+            guard let activityIndicator = self.activityIndicator else { return }
+            if activityIndicator.isAnimating{
+                activityIndicator.stopAnimating()
+                activityIndicator.removeFromSuperview()
+            }
             self.tableView.reloadData()
-            self.isPaginating = false
+            self.presentor?.isPaginating = false
             self.tableView.tableFooterView = nil
         }
     }
@@ -137,27 +169,27 @@ extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegat
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        return presentor?.numberOfSections ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return apiList.count
+        return presentor?.numberOfRowsInSection ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? PublicAPIListCellView
-        cell?.cellViewModel = apiList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: presentor?.reusableCellIdentifier ?? "Cell", for: indexPath) as? PublicAPIListCellView
+        cell?.cellViewModel =  presentor?.cellForRow(at: indexPath.row)  //apiList[indexPath.row]
         return cell ?? UITableViewCell()
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(130)
+        return CGFloat(presentor?.heightForRow ?? 0)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            apiList.remove(at: indexPath.row)
+            presentor?.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         }
@@ -172,36 +204,43 @@ extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegat
         return .none
     }
     
+    
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let movedObject = self.apiList[sourceIndexPath.row]
-        apiList.remove(at: sourceIndexPath.row)
-        apiList.insert(movedObject, at: destinationIndexPath.row)
+        let movedObject = presentor?.cellForRow(at: sourceIndexPath.row)
+        presentor?.remove(at: sourceIndexPath.row)
+        presentor?.insert(item: movedObject, at: destinationIndexPath.row)
+        
     }
     
     
-    ///Pagination Fetch result in advance and add to the list
+    ///Pagination :Fetch result in advance and add to the list
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView == tableView{
             if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height){
-                if !self.isPaginating {
-                    self.isPaginating = true
-                    self.tableView.tableFooterView = CreateLoadingFooter()
+                guard let isPaginating = presentor?.isPaginating else { return }
+                if !isPaginating {
+                    presentor?.isPaginating = true
+                    self.tableView.tableFooterView =  CreateLoadingFooter()
                     presentor?.loadTableEntries()
-                    
                 }
             }
             
         }
     }
     
+    ///Load web page when row selected
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let link = presentor?.cellForRow(at: indexPath.row)?.link else { return }
+        presentor?.loadDetailPage(withUrl:  link)
+    }
+    
 }
 
-
+///Search entered text against categories and reload the table
 extension PublicAPIListViewController : UISearchResultsUpdating{
-    
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
-        apiList = searchApiList.filter { $0.category.hasPrefix(searchText) }
-        tableView.reloadData()
+        presentor?.updateSearchResults(searchText: searchText)
+        
     }
 }

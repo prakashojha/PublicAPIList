@@ -1,0 +1,15 @@
+{
+    "count":1,
+    "entries":[
+        {
+            "API":"Icanhazip",
+            "Description":"IP Address API",
+            "Auth":"",
+            "HTTPS":true,
+            "Cors":"yes",
+            "Link":"https://major.io/icanhazip-com-faq/",
+            "Category":"Development"
+        }
+    ]
+}
+
