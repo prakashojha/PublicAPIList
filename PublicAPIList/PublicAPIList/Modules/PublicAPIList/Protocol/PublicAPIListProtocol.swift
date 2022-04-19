@@ -43,8 +43,7 @@ protocol InteractorProtocol: AnyObject{
 
 ///Impleneted by Router
 protocol RouterProtocol: AnyObject{
-    func loadDetailPage(withUrl: String)
-    
     ///Call from Presentor to Router
+    func loadDetailPage(withUrl: String)
     func showLoadErrorAlert(withError: String)
 }

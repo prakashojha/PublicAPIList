@@ -27,11 +27,21 @@ class PublicAPIListViewController: UIViewController {
     }()
     
     
-    private  func createActivityIndicatorView()->UIActivityIndicatorView{
+    private  func addActivityIndicatorView()->UIActivityIndicatorView{
         let avtivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
         avtivityIndicator.style = .large
         avtivityIndicator.color = .red
         return avtivityIndicator
+    }
+    
+    
+    private func stopActivityIndicatorView(){
+        guard let activityIndicator = self.activityIndicator else { return }
+        if activityIndicator.isAnimating{
+            activityIndicator.stopAnimating()
+            activityIndicator.removeFromSuperview()
+        }
+        
     }
     
     
@@ -45,13 +55,29 @@ class PublicAPIListViewController: UIViewController {
     }
     
     
+
     ///Add activity indicator to table view showing load data in progress
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.activityIndicator = createActivityIndicatorView()
+        self.activityIndicator = addActivityIndicatorView()
         self.tableView.backgroundView = activityIndicator
         activityIndicator.startAnimating()
     }
+    
+    
+    
+    ///Set up table constraints of tableView
+    ///TableView aligns with leading, top, bottom and trailing constraints of the view
+    func setupConstraints(){
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        ])
+    }
+    
     
     
     ///Setup navigation bar and features like Edit, Sort , Rearrange and Search
@@ -102,17 +128,6 @@ class PublicAPIListViewController: UIViewController {
         self.tableView.tableHeaderView = searchController.searchBar
     }
     
-    ///Set up table constraints of tableView
-    ///TableView aligns with leading, top, bottom and trailing constraints of the view
-    func setupConstraints(){
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 0),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        ])
-    }
     
     
     ///A View with activity indicator used for pagination
@@ -120,7 +135,7 @@ class PublicAPIListViewController: UIViewController {
     ///Added to the footer view
     func CreateLoadingFooter()->UIView{
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
-        self.activityIndicator = createActivityIndicatorView()
+        self.activityIndicator = addActivityIndicatorView()
         activityIndicator.center = footerView.center
        
         footerView.addSubview(activityIndicator)
@@ -137,21 +152,14 @@ extension PublicAPIListViewController: ViewProtocol{
     ///Housekeeping activity when no data is received from presentor
     func onDataLoadError() {
         DispatchQueue.main.async {
-            if self.activityIndicator.isAnimating{
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.removeFromSuperview()
-            }
+            self.stopActivityIndicatorView()
         }
     }
     
     ///Once data is received from presentor, stop and remove activity indicator, stop pagination and reload the table
     func onFinishLoadTableEntries() {
         DispatchQueue.main.async {
-            guard let activityIndicator = self.activityIndicator else { return }
-            if activityIndicator.isAnimating{
-                activityIndicator.stopAnimating()
-                activityIndicator.removeFromSuperview()
-            }
+            self.stopActivityIndicatorView()
             self.tableView.reloadData()
             self.presentor?.isPaginating = false
             self.tableView.tableFooterView = nil

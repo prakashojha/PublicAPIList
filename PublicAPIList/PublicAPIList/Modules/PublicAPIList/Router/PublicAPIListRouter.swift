@@ -26,6 +26,9 @@ class PublicAPIListRouter: RouterProtocol{
         navigationComtroller.present(alert, animated: true, completion: nil)
     }
     
+    func showActivityIndicator(){
+        
+    }
     
     func loadDetailPage(withUrl: String){
         guard let url = URL(string: withUrl) else { return }
