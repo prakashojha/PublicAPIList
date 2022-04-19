@@ -20,7 +20,7 @@ class PublicAPIListViewController: UIViewController {
         tableView.register(PublicAPIListCellView.self, forCellReuseIdentifier: presentor?.reusableCellIdentifier ?? "Cell")
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.prefetchDataSource = self
+       // tableView.prefetchDataSource = self
         tableView.showsVerticalScrollIndicator = false
         return tableView
         
@@ -170,11 +170,7 @@ extension PublicAPIListViewController: ViewProtocol{
 
 
 
-extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching{
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-       ///Do Nothing
-    }
-    
+extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegate{
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return presentor?.numberOfSections ?? 0
@@ -186,7 +182,7 @@ extension PublicAPIListViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: presentor?.reusableCellIdentifier ?? "Cell", for: indexPath) as? PublicAPIListCellView
-        cell?.cellViewModel =  presentor?.cellForRow(at: indexPath.row)  //apiList[indexPath.row]
+        cell?.cellViewModel =  presentor?.cellForRow(at: indexPath.row)
         return cell ?? UITableViewCell()
     }
     
