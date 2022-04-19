@@ -20,7 +20,6 @@ class PublicAPIListViewController: UIViewController {
         tableView.register(PublicAPIListCellView.self, forCellReuseIdentifier: presentor?.reusableCellIdentifier ?? "Cell")
         tableView.delegate = self
         tableView.dataSource = self
-       // tableView.prefetchDataSource = self
         tableView.showsVerticalScrollIndicator = false
         return tableView
         
@@ -28,7 +27,7 @@ class PublicAPIListViewController: UIViewController {
     
     
     private  func addActivityIndicatorView()->UIActivityIndicatorView{
-        let avtivityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 500, height: 500))
+        let avtivityIndicator = UIActivityIndicatorView()
         avtivityIndicator.style = .large
         avtivityIndicator.color = .red
         return avtivityIndicator
