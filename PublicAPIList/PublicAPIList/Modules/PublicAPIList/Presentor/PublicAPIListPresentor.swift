@@ -85,22 +85,31 @@ class PublicAPIListPresentor: PresentorProtocol, TableViewModelProtocol{
     }
     
     
+    
     func remove(at indexPath: Int){
-        self.apiData.remove(at: indexPath)
+        if indexPath < apiData.count{
+            self.apiData.remove(at: indexPath)
+        }
     }
+    
     
     func insert(item: APIDetail?, at indexPath: Int){
         guard let item = item, indexPath < apiData.count else { return }
         self.apiData.insert(item, at: indexPath)
     }
     
+    
     func updateSearchResults(searchText: String){
-        self.apiData = searchApiList.filter { $0.category!.hasPrefix(searchText) }
+        if !searchApiList.isEmpty{
+            self.apiData = searchApiList.filter { $0.category!.hasPrefix(searchText) }
+        }
     }
     
+    
     func sort(){
-        sortAscending == true ? apiData.sort{$0.category! < $1.category!} : apiData.sort{$0.category! > $1.category!}
-        sortAscending = !sortAscending
-        
+        if !apiData.isEmpty{
+            sortAscending == true ? apiData.sort{$0.category! < $1.category!} : apiData.sort{$0.category! > $1.category!}
+            sortAscending = !sortAscending
+        }
     }
 }

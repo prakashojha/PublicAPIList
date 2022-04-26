@@ -39,7 +39,6 @@ class PublicAPIListInteractor: InteractorProtocol{
                     }
                     dispatchGroup.leave()
                 }
-                
             }
         }
         

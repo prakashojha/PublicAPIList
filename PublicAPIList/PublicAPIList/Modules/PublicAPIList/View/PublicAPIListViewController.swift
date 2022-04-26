@@ -164,7 +164,6 @@ extension PublicAPIListViewController: ViewProtocol{
             self.tableView.tableFooterView = nil
         }
     }
-    
 }
 
 
