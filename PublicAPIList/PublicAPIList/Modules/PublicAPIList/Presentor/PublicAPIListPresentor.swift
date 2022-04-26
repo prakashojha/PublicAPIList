@@ -87,14 +87,14 @@ class PublicAPIListPresentor: PresentorProtocol, TableViewModelProtocol{
     
     
     func remove(at indexPath: Int){
-        if indexPath < apiData.count{
+        if indexPath >= 0 && indexPath < apiData.count{
             self.apiData.remove(at: indexPath)
         }
     }
     
     
     func insert(item: APIDetail?, at indexPath: Int){
-        guard let item = item, indexPath < apiData.count else { return }
+        guard let item = item, indexPath >= 0 && indexPath < apiData.count else { return }
         self.apiData.insert(item, at: indexPath)
     }
     
