@@ -81,16 +81,16 @@ class PublicAPIListViewController: UIViewController {
     
     ///Setup navigation bar and features like Edit, Sort , Rearrange and Search
     func setupNavigationAndBarButton(){
-        setUpNavigation()
+        setUpNavigationTitle()
         setUpEditAndSortBarButtons()
         setUpSearchBar()
     }
     
     
     ///Shows the title of the page
-    func setUpNavigation(){
+    func setUpNavigationTitle(){
         navigationItem.title = "Public API LIST"
-        navigationItem.titleView?.backgroundColor = .cyan
+
     }
     
     
